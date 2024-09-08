@@ -1,0 +1,5 @@
+messages:
+  no-permission: "&cVocê não tem permissão para coletar esta recompensa."
+  in-delay: "&cAguarde &f{remaining-time} &cpara coletar este recompensa novamente."
+  reward-collected: "&eVocê coletou a recompensa &f{reward-name} &ecom sucesso!"
+  collect-time: "&aA recompensa &f{reward-name} &aagora pode ser coletada novamente!"

@@ -3,7 +3,9 @@ package com.github.alwaysdarkk.rewards.common.registry;
 import com.github.alwaysdarkk.rewards.common.data.RewardUser;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RewardUserRegistry {
 
@@ -17,7 +19,11 @@ public class RewardUserRegistry {
         userMap.remove(user.getPlayerName());
     }
 
-    public @Nullable RewardUser find(String playerName) {
+    public RewardUser find(String playerName) {
         return userMap.get(playerName);
+    }
+
+    public List<RewardUser> findAll() {
+        return new ArrayList<>(userMap.values());
     }
 }

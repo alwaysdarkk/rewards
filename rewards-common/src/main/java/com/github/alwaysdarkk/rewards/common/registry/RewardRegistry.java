@@ -4,7 +4,6 @@ import com.github.alwaysdarkk.rewards.common.adapter.RewardConfigurationAdapter;
 import com.github.alwaysdarkk.rewards.common.data.Reward;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +13,10 @@ public class RewardRegistry {
 
     private final Object2ObjectMap<String, Reward> rewardMap;
 
-    public RewardRegistry(FileConfiguration configuration) {
+    public RewardRegistry() {
         this.rewardMap = new Object2ObjectOpenHashMap<>();
 
-        new RewardConfigurationAdapter(configuration)
+        new RewardConfigurationAdapter()
                 .getRewards().stream().filter(Objects::nonNull).forEach(this::insert);
     }
 

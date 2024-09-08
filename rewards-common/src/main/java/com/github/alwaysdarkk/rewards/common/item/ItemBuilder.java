@@ -1,6 +1,7 @@
 package com.github.alwaysdarkk.rewards.common.item;
 
 import com.github.alwaysdarkk.rewards.common.util.ColorUtil;
+import com.google.common.util.concurrent.Atomics;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -10,7 +11,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ItemBuilder {
 
@@ -38,6 +42,15 @@ public class ItemBuilder {
 
     public ItemBuilder lore(List<String> lore) {
         return modifyItemMeta(itemMeta -> itemMeta.setLore(ColorUtil.colored(lore)));
+    }
+
+    public ItemBuilder loreWithPlaceholder(List<String> lore, Map<String, String> placeholders) {
+        final AtomicReference<List<String>> atomicReference = Atomics.newReference(lore);
+        placeholders.forEach((key, placeholder) -> atomicReference.getAndUpdate(get -> get.stream()
+                .map(line -> line.replace(key, placeholder).replace("&", "§"))
+                .collect(Collectors.toList())));
+
+        return modifyItemMeta(itemMeta -> itemMeta.setLore(atomicReference.get()));
     }
 
     public ItemBuilder addLore(String... lore) {

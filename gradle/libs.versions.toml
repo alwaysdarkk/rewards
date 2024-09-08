@@ -5,6 +5,7 @@ annotations = "24.0.1"
 inventory-framework = "6f6a634cc5478a16ff81773ed8018"
 fast-util = "8.5.14"
 sql-provider = "9561f20fd2"
+configuration = "1.0.2"
 
 [libraries]
 spigot = { module = "org.spigotmc:spigot-api", version.ref = "spigot" }
@@ -13,3 +14,4 @@ annotations = { module = "org.jetbrains:annotations", version.ref = "annotations
 inventory-framework = { module = "com.github.DevNatan.inventory-framework:inventory-framework", version.ref = "inventory-framework" }
 fast-util = { module = "it.unimi.dsi:fastutil", version.ref = "fast-util" }
 sql-provider = { module = "com.github.HenryFabio:sql-provider", version.ref = "sql-provider" }
+configuration = { module = "com.github.HenryFabio.configuration-injector:bukkit", version.ref = "configuration" }

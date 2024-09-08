@@ -1,0 +1,26 @@
+settings:
+  name: "Recompensas" # Nome do menu.
+  size: 3 # Número de linhas do menu.
+
+icons:
+  no-permission-icon:
+    lore:
+      - "&7Recompensa bem legal"
+      - ""
+      - "&f Delay: &7{reward-delay}"
+      - ""
+      - "&cSem permissão!"
+  delay-icon:
+    lore:
+      - "&7Recompensa bem legal"
+      - ""
+      - "&f Delay: &7{reward-delay}"
+      - ""
+      - "&cAguarde &f{remaining_time} &cpara coletar!"
+  collect-icon:
+    lore:
+      - "&7Recompensa bem legal"
+      - ""
+      - "&f Delay: &7{reward-delay}"
+      - ""
+      - "&aClique para coletar!"

@@ -4,4 +4,9 @@ dependencies {
     compileOnly(libs.spigot)
 
     implementation(libs.sql.provider)
+    implementation(libs.inventory.framework)
+    implementation(libs.configuration)
+
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
 }

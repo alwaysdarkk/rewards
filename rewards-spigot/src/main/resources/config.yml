@@ -10,14 +10,14 @@ database:
 
 rewards:
   test:
-    name: "Recompensa Teste" # Nome que aparece nas mensagens/menu.
+    name: "&eRecompensa Teste" # Nome que aparece nas mensagens/menu.
     permission: "recompensa.teste" # Permissão para coletar.
     command: "give {player} 1 stone" # Comando que será executado ao pegar a recompensa.
     icon: "1:0" # Ícone que vai aparecer no menu. (Para ser uma head, cole o url dela)
     delay: 10 # Delay para coletar novamente. (Em minutos)
     slot: 1 # Slot que vai ficar o item no menu.
   test2:
-    name: "Recompensa Teste 2"
+    name: "&eRecompensa Teste 2"
     permission: "recompensa.teste2"
     command: "give {player} 1 stone"
     icon: "1:1"

@@ -2,8 +2,9 @@ dependencies {
     compileOnly(libs.spigot)
 
     compileOnly(libs.annotations)
-    compileOnly(libs.fast.util)
+    compileOnly(libs.configuration)
 
+    compileOnly(libs.fast.util)
     compileOnly(libs.sql.provider)
 
     compileOnly(libs.lombok)

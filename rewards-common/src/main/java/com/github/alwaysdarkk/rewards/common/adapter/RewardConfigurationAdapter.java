@@ -1,36 +1,32 @@
 package com.github.alwaysdarkk.rewards.common.adapter;
 
+import com.github.alwaysdarkk.rewards.common.configuration.ConfigValue;
 import com.github.alwaysdarkk.rewards.common.data.Reward;
 import com.github.alwaysdarkk.rewards.common.item.util.SkullUtil;
 import com.github.alwaysdarkk.rewards.common.util.ColorUtil;
-import lombok.RequiredArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 public class RewardConfigurationAdapter {
 
-    private final FileConfiguration configuration;
-
     public List<Reward> getRewards() {
-        final ConfigurationSection section = configuration.getConfigurationSection("rewards");
+        final ConfigurationSection section = ConfigValue.get(ConfigValue::rewardsSection);
         if (section == null) {
             return null;
         }
 
         return section.getKeys(false).stream()
                 .map(section::getConfigurationSection)
-                .map(this::buildReward)
+                .map(this::adaptReward)
                 .collect(Collectors.toList());
     }
 
-    private Reward buildReward(ConfigurationSection section) {
+    private Reward adaptReward(ConfigurationSection section) {
         final String id = section.getName();
 
         final String name = ColorUtil.colored(section.getString("name"));

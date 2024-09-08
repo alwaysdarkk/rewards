@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
@@ -27,13 +30,29 @@ public class RewardUser {
         rewardMap.remove(reward.getId());
     }
 
-    public boolean canCollect(Reward reward) {
+    public long getRemainingTime(Reward reward) {
         final String rewardId = reward.getId();
+        if (!rewardMap.containsKey(rewardId)) {
+            return 0L;
+        }
+
+        final long expireDate = rewardMap.get(rewardId);
+        return expireDate - System.currentTimeMillis();
+    }
+
+    public boolean canCollect(String rewardId) {
         if (!rewardMap.containsKey(rewardId)) {
             return true;
         }
 
         final long expireDate = rewardMap.get(rewardId);
         return System.currentTimeMillis() >= expireDate;
+    }
+
+    public List<String> getCanCollectRewards() {
+        return rewardMap.keySet().stream()
+                .filter(Objects::nonNull)
+                .filter(this::canCollect)
+                .collect(Collectors.toList());
     }
 }
