@@ -2,7 +2,6 @@ package com.github.alwaysdarkk.rewards.common.configuration;
 
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
-import com.henryfabio.minecraft.configinjector.common.annotations.ConfigSection;
 import com.henryfabio.minecraft.configinjector.common.annotations.TranslateColors;
 import com.henryfabio.minecraft.configinjector.common.injector.ConfigurationInjectable;
 import lombok.AccessLevel;
@@ -26,13 +25,13 @@ public class ConfigValue implements ConfigurationInjectable {
     @ConfigField("database.type")
     private String databaseType;
 
-    @ConfigSection("database.mysql")
+    @ConfigField("database.mysql")
     private ConfigurationSection mysqlSection;
 
-    @ConfigSection("database.sqlite")
+    @ConfigField("database.sqlite")
     private ConfigurationSection sqliteSection;
 
-    @ConfigSection("rewards")
+    @ConfigField("rewards")
     private ConfigurationSection rewardsSection;
 
     public static <T> T get(Function<ConfigValue, T> function) {

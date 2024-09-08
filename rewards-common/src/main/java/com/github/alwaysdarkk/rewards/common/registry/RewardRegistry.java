@@ -7,7 +7,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RewardRegistry {
 
@@ -16,8 +15,7 @@ public class RewardRegistry {
     public RewardRegistry() {
         this.rewardMap = new Object2ObjectOpenHashMap<>();
 
-        new RewardConfigurationAdapter()
-                .getRewards().stream().filter(Objects::nonNull).forEach(this::insert);
+        new RewardConfigurationAdapter().getRewards().forEach(this::insert);
     }
 
     public void insert(Reward reward) {

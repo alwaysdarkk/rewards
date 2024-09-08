@@ -9,6 +9,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class RewardConfigurationAdapter {
 
         return section.getKeys(false).stream()
                 .map(section::getConfigurationSection)
+                .filter(Objects::nonNull)
                 .map(this::adaptReward)
                 .collect(Collectors.toList());
     }

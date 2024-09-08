@@ -20,7 +20,7 @@ public class UserConnectionListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
-        RewardUser user = userRegistry.find(player.getName());
+        RewardUser user = userRepository.find(player.getName());
         if (user == null) {
             user = new RewardUser(player.getName());
             userRepository.insert(user);
