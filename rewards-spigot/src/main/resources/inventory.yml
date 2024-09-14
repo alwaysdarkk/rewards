@@ -7,20 +7,20 @@ icons:
     lore:
       - "&7Recompensa bem legal"
       - ""
-      - "&f Delay: &7{reward-delay}"
+      - "&f Delay: &7{reward_delay}"
       - ""
       - "&cSem permissão!"
   delay-icon:
     lore:
       - "&7Recompensa bem legal"
       - ""
-      - "&f Delay: &7{reward-delay}"
+      - "&f Delay: &7{reward_delay}"
       - ""
       - "&cAguarde &f{remaining_time} &cpara coletar!"
   collect-icon:
     lore:
       - "&7Recompensa bem legal"
       - ""
-      - "&f Delay: &7{reward-delay}"
+      - "&f Delay: &7{reward_delay}"
       - ""
       - "&aClique para coletar!"

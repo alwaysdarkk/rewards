@@ -19,8 +19,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class RewardsView extends View {
 
@@ -58,14 +58,17 @@ public class RewardsView extends View {
     private ViewItemHandler getRewardIcon(Reward reward, RewardUser user) {
         return context -> {
             final String rewardDelay = TimeFormatter.format(reward.getDelay());
-
             final Player player = context.getPlayer();
+
             if (!player.hasPermission(reward.getPermission())) {
-                final List<String> lore = InventoryValue.get(InventoryValue::noPermissionLore);
+                final List<String> lore = InventoryValue.get(InventoryValue::noPermissionLore).stream()
+                        .map(line -> line.replace("{reward_delay}", rewardDelay))
+                        .collect(Collectors.toList());
+
                 final ItemStack itemStack = new ItemBuilder(reward.getItemStack())
                         .hideAll()
                         .displayName(reward.getName())
-                        .loreWithPlaceholder(lore, Map.of("{reward-delay}", rewardDelay))
+                        .lore(lore)
                         .build();
 
                 context.setItem(itemStack);
@@ -75,23 +78,28 @@ public class RewardsView extends View {
             if (!user.canCollect(reward.getId())) {
                 final String remainingTime = TimeFormatter.format(user.getRemainingTime(reward));
 
-                final List<String> lore = InventoryValue.get(InventoryValue::delayLore);
+                final List<String> lore = InventoryValue.get(InventoryValue::delayLore).stream()
+                        .map(line -> line.replace("{reward_delay}", rewardDelay).replace("{remaining_time}", remainingTime))
+                        .collect(Collectors.toList());
+
                 final ItemStack itemStack = new ItemBuilder(reward.getItemStack())
                         .hideAll()
                         .displayName(reward.getName())
-                        .loreWithPlaceholder(
-                                lore, Map.of("{reward-delay}", rewardDelay, "{remaining_time}", remainingTime))
+                        .lore(lore)
                         .build();
 
                 context.setItem(itemStack);
                 return;
             }
 
-            final List<String> lore = InventoryValue.get(InventoryValue::collectLore);
+            final List<String> lore = InventoryValue.get(InventoryValue::collectLore).stream()
+                    .map(line -> line.replace("{reward_delay}", rewardDelay))
+                    .collect(Collectors.toList());
+
             final ItemStack itemStack = new ItemBuilder(reward.getItemStack())
                     .hideAll()
                     .displayName(reward.getName())
-                    .loreWithPlaceholder(lore, Map.of("{reward-delay}", rewardDelay))
+                    .lore(lore)
                     .build();
 
             context.setItem(itemStack);
