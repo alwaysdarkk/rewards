@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 public class RewardsConstants {
     public static final String CREATE_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS rewards_users(playerName TEXT NOT NULL PRIMARY KEY, rewardMap LONGTEXT NOT NULL)";
+            "CREATE TABLE IF NOT EXISTS rewards_users(playerName VARCHAR(32) NOT NULL PRIMARY KEY, rewardMap LONGTEXT NOT NULL)";
 
     public static final String INSERT_QUERY = "INSERT INTO rewards_users VALUES(?,?)";
     public static final String UPDATE_QUERY = "UPDATE rewards_users SET rewardMap = ? WHERE playerName = ?";
